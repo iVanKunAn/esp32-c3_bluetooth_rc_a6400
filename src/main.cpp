@@ -26,7 +26,7 @@ BLERemoteCharacteristic *remoteNotify;
 
 unsigned long previousMillis = 0;
 unsigned long currentMillis = millis();
-const long time_full_dwn = 600;
+const long time_full_dwn = 700;
 const long time_full_up = 100;
 
 // helper function for print debug
@@ -51,7 +51,7 @@ void printHex(uint8_t *data, size_t length)
 }
 
 static void commandNotifyCallback(BLERemoteCharacteristic *pBLERemoteCharacteristic,
-											 uint8_t *pData, size_t length, bool isNotify)
+								  uint8_t *pData, size_t length, bool isNotify)
 {
 	Serial.print("Received from command channel: ");
 	printHex(pData, length);
@@ -66,7 +66,7 @@ static void commandNotifyCallback(BLERemoteCharacteristic *pBLERemoteCharacteris
 }
 
 static void notifyNotifyCallback(BLERemoteCharacteristic *pBLERemoteCharacteristic,
-											uint8_t *pData, size_t length, bool isNotify)
+								 uint8_t *pData, size_t length, bool isNotify)
 {
 	Serial.print("Received from notify channel: ");
 	printHex(pData, length);
@@ -87,8 +87,8 @@ class MyAdvertisedDeviceCallbacks : public BLEAdvertisedDeviceCallbacks
 		Serial.print("BLE: something found: ");
 		Serial.println(advertisedDevice.getName().c_str());
 		if (advertisedDevice.getName() == bleServerName)
-		{																						 // Check if the name of the advertiser matches
-			advertisedDevice.getScan()->stop();										 // Scan can be stopped, we found what we are looking for
+		{																	// Check if the name of the advertiser matches
+			advertisedDevice.getScan()->stop();								// Scan can be stopped, we found what we are looking for
 			pServerAddress = new BLEAddress(advertisedDevice.getAddress()); // Address of advertiser is the one we need
 			Serial.println("Camera found. Connecting!");
 			Serial.print("Payload: ");
@@ -232,7 +232,7 @@ void pairOrConnect()
 
 void setup()
 {
-	Serial.begin(115200);						  // default boot baudrate
+	Serial.begin(115200);					 // default boot baudrate
 	esp_log_level_set("*", ESP_LOG_VERBOSE); // verbose logs
 	pinMode(SHOOT_BUTTON, INPUT_PULLUP);
 	// pinMode(LED_ONBOARD, OUTPUT);
@@ -266,17 +266,20 @@ void loop()
 		if (digitalRead(SHOOT_BUTTON) == LOW)
 		{
 			take_shoot = 1;
+			fully_up_send = 0;
 			delay(100);
 		}
 		if (digitalRead(SHOOT_BUTTON) == HIGH)
 		{
 			take_shoot = 0;
+			fully_down_send = 0;
 			delay(100);
 		}
 
 		if (take_shoot == 1)
 		{
 			first_press = 1;
+			Serial.println("first_press = 1");
 			if (was_pressed == 0)
 			{
 				remoteCommand->writeValue(Shutter_Half_Down, 2, true);
@@ -303,20 +306,17 @@ void loop()
 			if (was_released == 0)
 			{
 				remoteCommand->writeValue(Shutter_Half_Up, 2, true);
-				currentMillis = millis();
-				previousMillis = currentMillis;
 				was_released = 1;
+				delay(50);
 			}
 			if (was_released == 1)
 			{
-				if (millis() - previousMillis >= time_full_up) // Логика, что прошло время, уже не держу...
+				if (fully_up_send == 0)
 				{
-					if (fully_up_send == 0)
-					{
-						remoteCommand->writeValue(Shutter_Fully_Up, 2, true);
-						fully_up_send = 1;
-						was_pressed = 0;
-					}
+					remoteCommand->writeValue(Shutter_Fully_Up, 2, true);
+					fully_up_send = 1;
+					was_pressed = 0;
+					delay(50);
 				}
 			}
 		}
