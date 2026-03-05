@@ -1,4 +1,4 @@
-# Two button remote сontrol for Sony a6400 based on ESP32-C3_Mini
+# Two buttons remote сontrol for Sony a6400 based on ESP32-C3_Mini
 
 This is pre-pre-alpha version of my Remote Control for Sony a6400 on ESP32-C3.
 
