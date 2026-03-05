@@ -1,4 +1,4 @@
-# One button remote сontrol for Sony a6400 based on ESP32-C3_Mini
+# Two button remote сontrol for Sony a6400 based on ESP32-C3_Mini
 
 This is pre-pre-alpha version of my Remote Control for Sony a6400 on ESP32-C3.
 
@@ -9,6 +9,7 @@ My setup:
 * Environment: Visual Studio Code with PlatormIO
 * Device: ESP32-C3 Super Mini Dev Module
 * One button, connecting the ground to the pin 1, with 10kOm pull up rezistor.
+* Second button is a touch button, connected with pin 3.
 * Camera: Sony a6400
 * SHOOT_BUTTON GPIO1
 * FOCUS_BUTTON GPIO3
