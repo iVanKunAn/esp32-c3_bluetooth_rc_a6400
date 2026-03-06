@@ -12,9 +12,9 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug",
-            "executable": "d:/2_platformio/e6400_remote/.pio/build/esp32-c3-devkitm-1/firmware.elf",
+            "executable": "D:/05_GitHub/esp32-c3_bluetooth_rc_a6400/.pio/build/esp32-c3-devkitm-1/firmware.elf",
             "projectEnvName": "esp32-c3-devkitm-1",
-            "toolchainBinDir": "C:/Users/Guest/.platformio/packages/toolchain-riscv32-esp/bin",
+            "toolchainBinDir": "C:/Users/kunit/.platformio/packages/toolchain-riscv32-esp/bin",
             "internalConsoleOptions": "openOnSessionStart",
             "preLaunchTask": {
                 "type": "PlatformIO",
@@ -25,18 +25,18 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (skip Pre-Debug)",
-            "executable": "d:/2_platformio/e6400_remote/.pio/build/esp32-c3-devkitm-1/firmware.elf",
+            "executable": "D:/05_GitHub/esp32-c3_bluetooth_rc_a6400/.pio/build/esp32-c3-devkitm-1/firmware.elf",
             "projectEnvName": "esp32-c3-devkitm-1",
-            "toolchainBinDir": "C:/Users/Guest/.platformio/packages/toolchain-riscv32-esp/bin",
+            "toolchainBinDir": "C:/Users/kunit/.platformio/packages/toolchain-riscv32-esp/bin",
             "internalConsoleOptions": "openOnSessionStart"
         },
         {
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (without uploading)",
-            "executable": "d:/2_platformio/e6400_remote/.pio/build/esp32-c3-devkitm-1/firmware.elf",
+            "executable": "D:/05_GitHub/esp32-c3_bluetooth_rc_a6400/.pio/build/esp32-c3-devkitm-1/firmware.elf",
             "projectEnvName": "esp32-c3-devkitm-1",
-            "toolchainBinDir": "C:/Users/Guest/.platformio/packages/toolchain-riscv32-esp/bin",
+            "toolchainBinDir": "C:/Users/kunit/.platformio/packages/toolchain-riscv32-esp/bin",
             "internalConsoleOptions": "openOnSessionStart",
             "loadMode": "manual"
         }
