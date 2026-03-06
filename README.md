@@ -25,7 +25,8 @@ How this pre demo works:
 5. If pressed focus button and shooting one together, it takes a photo.
 6. In theory the blue light have to blink during pairing process, but it is not :-), need to fix it.
 
-It should works with other Sony Alpha cameras but you must enter your cam `bleServerName`.
+It should works with other Sony Alpha cameras but you must enter your camera`s name:
+-#define bleServerName "your_name".
 
 Preassambled unit.
 ![preassambled unit](https://github.com/user-attachments/assets/0231ce28-a840-4e1b-8408-9ce2abf20747)
