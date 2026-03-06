@@ -1,5 +1,5 @@
 #include <Arduino.h>
-//#include <WiFi.h>
+// #include <esp_wifi.h>
 #include <BLEDevice.h>
 
 // Please enter your camera bluetooth name. My Sony a6400 name is:
@@ -55,7 +55,7 @@ void printHex(uint8_t *data, size_t length)
 }
 
 static void commandNotifyCallback(BLERemoteCharacteristic *pBLERemoteCharacteristic,
-											 uint8_t *pData, size_t length, bool isNotify)
+								  uint8_t *pData, size_t length, bool isNotify)
 {
 	Serial.print("Received from command channel: ");
 	printHex(pData, length);
@@ -70,7 +70,7 @@ static void commandNotifyCallback(BLERemoteCharacteristic *pBLERemoteCharacteris
 }
 
 static void notifyNotifyCallback(BLERemoteCharacteristic *pBLERemoteCharacteristic,
-											uint8_t *pData, size_t length, bool isNotify)
+								 uint8_t *pData, size_t length, bool isNotify)
 {
 	Serial.print("Received from notify channel: ");
 	printHex(pData, length);
@@ -91,8 +91,8 @@ class MyAdvertisedDeviceCallbacks : public BLEAdvertisedDeviceCallbacks
 		Serial.print("BLE: something found: ");
 		Serial.println(advertisedDevice.getName().c_str());
 		if (advertisedDevice.getName() == bleServerName)
-		{																						 // Check if the name of the advertiser matches
-			advertisedDevice.getScan()->stop();										 // Scan can be stopped, we found what we are looking for
+		{																	// Check if the name of the advertiser matches
+			advertisedDevice.getScan()->stop();								// Scan can be stopped, we found what we are looking for
 			pServerAddress = new BLEAddress(advertisedDevice.getAddress()); // Address of advertiser is the one we need
 			Serial.println("Camera found. Connecting!");
 			Serial.print("Payload: ");
@@ -226,9 +226,9 @@ class MySecurityCallbacks : public BLESecurityCallbacks
 
 void pairOrConnect()
 {
-	BLEScan *pBLEScan = BLEDevice::getScan();												// ESP32 начинает «слушать» эфир на наличие рекламных пакетов (Advertising) от других устройств
+	BLEScan *pBLEScan = BLEDevice::getScan();								   // ESP32 начинает «слушать» эфир на наличие рекламных пакетов (Advertising) от других устройств
 	pBLEScan->setAdvertisedDeviceCallbacks(new MyAdvertisedDeviceCallbacks()); // Как только сканер находит любое BLE-устройство, он вызывает функцию MyAdvertisedDeviceCallbacks, «Если имя устройства "Camera", то запомнить его адрес».
-	pBLEScan->setActiveScan(true);															// ESP32 отправляет запрос (Scan Request) найденному устройству, чтобы получить дополнительные данные (например, полное имя или список сервисов)
+	pBLEScan->setActiveScan(true);											   // ESP32 отправляет запрос (Scan Request) найденному устройству, чтобы получить дополнительные данные (например, полное имя или список сервисов)
 	// pBLEScan->setInterval(100); // время, через которое сканер переключается на другой радиоканал (Bluetooth использует 3 рекламных канала)
 	// pBLEScan->setWindow(1344); // время, в течение которого сканер активно слушает эфир внутри каждого интервала.
 	Serial.println("BLE: Looking for camera");
@@ -238,10 +238,21 @@ void pairOrConnect()
 
 void setup()
 {
-	Serial.begin(115200);  // default boot baudrate
-	//WiFi.disconnect(true); // Disconnect off WiFi
-	//WiFi.mode(WIFI_OFF);	  // Turn off WiFi, для экономии энергии
-	//Serial.println("WiFi turned off");
+	/*
+	// 1. Создаем дефолтный конфиг (занимает минимум RAM в стеке)
+	wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
+
+	// 2. Инициализируем драйвер, чтобы получить контроль над радиомодулем
+	if (esp_wifi_init(&cfg) == ESP_OK)
+	{
+		// 3. Явно останавливаем работу (отключает питание RF-блока)
+		esp_wifi_stop();
+		// 4. Выгружаем драйвер из памяти
+		esp_wifi_deinit();
+	}
+	*/
+	setCpuFrequencyMhz(80);					 // Установить частоту 80 МГц (вместо стандартных 160)
+	Serial.begin(9600);						 // default boot baudrate
 	esp_log_level_set("*", ESP_LOG_VERBOSE); // verbose logs
 	pinMode(SHOOT_BUTTON, INPUT);
 	pinMode(FOCUS_BUTTON, INPUT);
@@ -249,7 +260,7 @@ void setup()
 	pinMode(GREEN_LIGTH, OUTPUT);
 
 	// Init BLE device
-	BLEDevice::init("Blt RC 0.0");							 // Инициализация BLE с названием "Blt RC 0.0"
+	BLEDevice::init("Blt RC 0.0");						// Инициализация BLE с названием "Blt RC 0.0"
 	BLEDevice::setEncryptionLevel(ESP_BLE_SEC_ENCRYPT); // устанавливает уровень шифрования
 	// Установка мощности BLE для esp32-C3 по типам пакетов
 	// min: ESP_PWR_LVL_N12 (-12 dBm), max: ESP_PWR_LVL_P18 (+18 dBm), default: ESP_PWR_LVL_P3 (+3 dBm)
