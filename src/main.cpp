@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <WiFi.h>
+//#include <WiFi.h>
 #include <BLEDevice.h>
 
 // Please enter your camera bluetooth name. My Sony a6400 name is:
@@ -239,9 +239,9 @@ void pairOrConnect()
 void setup()
 {
 	Serial.begin(115200);  // default boot baudrate
-	WiFi.disconnect(true); // Disconnect off WiFi
-	WiFi.mode(WIFI_OFF);	  // Turn off WiFi, для экономии энергии
-	Serial.println("WiFi turned off");
+	//WiFi.disconnect(true); // Disconnect off WiFi
+	//WiFi.mode(WIFI_OFF);	  // Turn off WiFi, для экономии энергии
+	//Serial.println("WiFi turned off");
 	esp_log_level_set("*", ESP_LOG_VERBOSE); // verbose logs
 	pinMode(SHOOT_BUTTON, INPUT);
 	pinMode(FOCUS_BUTTON, INPUT);
