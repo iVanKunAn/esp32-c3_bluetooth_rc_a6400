@@ -31,4 +31,4 @@ Preassambled unit.
 ![preassambled unit](https://github.com/user-attachments/assets/0231ce28-a840-4e1b-8408-9ce2abf20747)
 
 If it helped to you and saved you a few hours, please buy a coffee for a Michał Niedźwiecki, the person who implemented the code:
-<https://www.paypal.com/paypalme/nkgmn/10>
+<https://github.com/dzwiedziu-nkg/esp32-a7iv-rc>.
