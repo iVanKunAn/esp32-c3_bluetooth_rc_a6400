@@ -264,9 +264,9 @@ void setup()
 	BLEDevice::setEncryptionLevel(ESP_BLE_SEC_ENCRYPT); // устанавливает уровень шифрования
 	// Установка мощности BLE для esp32-C3 по типам пакетов
 	// min: ESP_PWR_LVL_N12 (-12 dBm), max: ESP_PWR_LVL_P18 (+18 dBm), default: ESP_PWR_LVL_P3 (+3 dBm)
-	BLEDevice::setPower(ESP_PWR_LVL_P3, ESP_BLE_PWR_TYPE_DEFAULT);
-	BLEDevice::setPower(ESP_PWR_LVL_P9, ESP_BLE_PWR_TYPE_ADV);	// Для видимости при поиске
-	BLEDevice::setPower(ESP_PWR_LVL_P9, ESP_BLE_PWR_TYPE_SCAN); // Для режима сканирования
+	BLEDevice::setPower(ESP_PWR_LVL_P9, ESP_BLE_PWR_TYPE_DEFAULT);
+	BLEDevice::setPower(ESP_PWR_LVL_P3, ESP_BLE_PWR_TYPE_ADV);	// Для видимости при поиске
+	BLEDevice::setPower(ESP_PWR_LVL_N3, ESP_BLE_PWR_TYPE_SCAN); // Для режима сканирования -3, чтобы видеть только камеру
 	BLEDevice::setSecurityCallbacks(new MySecurityCallbacks()); // команда для авторизации на стороне esp32
 	// Retrieve a Scanner and set the callback we want to use to be informed when we
 	// have detected a new device.  Specify that we want active scanning and start the
