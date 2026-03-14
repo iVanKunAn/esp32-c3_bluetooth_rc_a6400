@@ -30,6 +30,7 @@ It should works with other Sony Alpha cameras but you must enter your camera`s n
 
 Preassambled unit.
 ![preassambled unit](https://github.com/user-attachments/assets/0231ce28-a840-4e1b-8408-9ce2abf20747)
+Please see the connection diagram at the src folder.
 
 If it helped to you, please say thankyou to the Michał Niedźwiecki, the person who implemented the code with bluetooth connection:
 <https://github.com/dzwiedziu-nkg/esp32-a7iv-rc>.
