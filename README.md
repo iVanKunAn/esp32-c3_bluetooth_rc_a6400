@@ -18,7 +18,7 @@ My setup:
 
 Please see the connection diagram at the src folder (/src/connection diagram.png).
 
-I made also a boby how I see it, you can get it in folder "src", the file for Fusion3D (RC_BLT_a6400.f3d).
+I made also a body how I see it, you can get it in folder "src", the file for Fusion3D (RC_BLT_a6400.f3d).
 
 https://github.com/iVanKunAn/esp32-c3_bluetooth_rc_a6400/blob/main/src/RC.png
 
