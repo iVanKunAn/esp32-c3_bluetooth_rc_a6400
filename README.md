@@ -15,6 +15,7 @@ My setup:
 * FOCUS_BUTTON GPIO3
 * BLUE_LIGTH GPIO7
 * GREEN_LIGTH GPIO6
+Please see the connection diagram at the src folder.
 
 How this pre demo works:
 
@@ -23,13 +24,12 @@ How this pre demo works:
 3. If found it pairs with it.
 4. If focus button is pressed, it takes a focus.
 5. If pressed focus button and shooting one together, it takes a photo.
-6. In theory the blue light have to blink during pairing process, but it is not :-), need to fix it.
+6. In theory the blue light have to blink during pairing process, but it is not :-), need to fix it somehow.
 
 It should works with other Sony Alpha cameras but you must enter your camera`s name:
 -#define bleServerName "your_name".
 
 Preassambled unit.
-Please see the connection diagram at the src folder.
 ![preassambled unit](https://github.com/user-attachments/assets/0231ce28-a840-4e1b-8408-9ce2abf20747)
 
 
