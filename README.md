@@ -7,8 +7,8 @@ The demo is based on <https://github.com/dzwiedziu-nkg/esp32-a7iv-rc>
 My setup:
 
 * Environment: Visual Studio Code with PlatormIO
-* Device: ESP32-C3 Super Mini Dev Module
-* One button, connecting the ground to the pin 1, with 10kOm pull up rezistor.
+* Device: ESP32-C3 Super Mini Dev Module. The board configuration parameters are specified in the "platformio.ini" file.
+* One button, connecting the ground to the pin 1, with 20kOm pull up rezistor.
 * Second button is a touch button, connected with pin 3.
 * Camera: Sony a6400
 * SHOOT_BUTTON GPIO1
@@ -16,9 +16,9 @@ My setup:
 * BLUE_LIGTH GPIO7
 * GREEN_LIGTH GPIO6
 
-Please see the connection diagram at the src folder (/src/connection diagram.png).
+Please see the connection diagram at the src folder "/src/connection diagram.png".
 
-I made also a body how I see it, you can get it in folder "src", the file for Fusion3D (RC_BLT_a6400.f3d).
+I made also a body how I see it, you can get it in folder "src", the file for Fusion3D "RC_BLT_a6400.f3d".
 
 https://github.com/iVanKunAn/esp32-c3_bluetooth_rc_a6400/blob/main/src/RC.png
 
